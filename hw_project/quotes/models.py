@@ -21,6 +21,6 @@ class Tag(models.Model):
 
 class Quote(models.Model):
     quote = models.TextField()
-    tags = models.ManyToManyField(Tag)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE, default=None, null=True)
+    tags = models.ManyToManyField(Tag, blank=True)
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, default=None, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

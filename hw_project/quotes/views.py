@@ -1,6 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
+from .forms import AuthorForm, QuoteForm
 from .models import Quote, Author
 
 
@@ -15,3 +18,28 @@ def main(request, page=1):
 def author(request, author_id):
     author = get_object_or_404(Author, id=author_id)
     return render(request, 'quotes/author.html', context={'author': author})
+
+
+@login_required
+def add_author(request):
+    if request.method == 'POST':
+        form = AuthorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Author added successfully!')
+            return redirect('quotes:root')
+    else:
+        form = AuthorForm()
+    return render(request, 'quotes/add_author.html', {'form': form})
+
+
+def add_quote(request):
+    if request.method == 'POST':
+        form = QuoteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Quote added successfully!')
+            return redirect('quotes:root')
+    else:
+        form = QuoteForm()
+    return render(request, 'quotes/add_quote.html', {'form': form})
