@@ -1,0 +1,27 @@
+{% extends 'quotes/base.html' %}
+
+{% block content%}
+
+<style>
+    .author-description {
+        text-align: justify;
+        margin-bottom: 20px;
+        margin-right: 30%;
+    }
+</style>
+<div class="author-details">
+    <h3 class="author-title pt-5">{{author.full_name}}</h3>
+    <p>
+        <strong>Born:</strong>
+        <span class="author-born-date">{{author.born_date}}</span>
+        <span class="author-born-location">{{author.born_location}}</span>
+    </p>
+    <p>
+        <strong>Description:</strong>
+    </p>
+
+    <div class="author-description">
+        {{author.description}}
+    </div>
+</div>
+{% endblock %}

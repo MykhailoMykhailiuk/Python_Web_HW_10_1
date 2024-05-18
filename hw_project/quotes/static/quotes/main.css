@@ -61,3 +61,8 @@
     color: #333333;
     cursor: not-allowed;
 }
+
+.author-description {
+    text-align: justify;
+    margin-bottom: 20px;
+}

@@ -11,7 +11,9 @@
                 {{quote.quote}}
             </span>
             <span>by <small class="author" itemprop="author">{{quote.author.full_name}}</small>
-            <a href="/author/{{quote.author.id}}">(about)</a>
+            <!-- <a href="/author/{{quote.author.id}}">(about)</a> -->
+            <a href="{% url 'quotes:author_detail' author_id=quote.author.id %}">(about)</a>
+
             </span>
             <div class="tags">
                 Tags:          
