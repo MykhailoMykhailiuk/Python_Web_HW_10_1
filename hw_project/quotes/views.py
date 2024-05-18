@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
 
 from .forms import AuthorForm, QuoteForm
 from .models import Quote, Author
@@ -26,7 +25,6 @@ def add_author(request):
         form = AuthorForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Author added successfully!')
             return redirect('quotes:root')
     else:
         form = AuthorForm()
@@ -38,7 +36,6 @@ def add_quote(request):
         form = QuoteForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Quote added successfully!')
             return redirect('quotes:root')
     else:
         form = QuoteForm()
